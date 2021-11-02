@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/JOGO PYTHON.iml" filepath="$PROJECT_DIR$/.idea/JOGO PYTHON.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../PROGRAMM DEV/PYTHON DEV/.idea/PYTHON DEV.iml" filepath="$PROJECT_DIR$/../../../PROGRAMM DEV/PYTHON DEV/.idea/PYTHON DEV.iml" />
+    </modules>
+  </component>
+</project>
