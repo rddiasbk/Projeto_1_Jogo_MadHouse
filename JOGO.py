@@ -1,7 +1,7 @@
 from random import randint
 from time import sleep
-#formatação de apresentação dos personagens
 import time
+
 #IDEIA: fazer um jogo com for pra completar a palavra carcosa.
 #da pra colocar cont pra definir 3 tentativas.
 # APRESENTAÇÃO DO PERSONAGEM
@@ -59,7 +59,7 @@ def format_text_history(estilo, texto):
 
 #JOGAR NOVAMENTE?
 def endgame():
-    resposta = (input('\n\nDigite J para jogar denovo ou qualquer tecla para sair! :')).lower().strip().split()[0]
+    resposta = (input('\n\nDigite J para jogar denovo ou digite qualquer tecla para sair! :')).lower().strip().split()[0]
     if resposta == 'j':
         main()
     else:
@@ -77,7 +77,7 @@ def slowprint(texto, atraso=0.1):
   for c in texto:
     print(c,end='',flush=True)
     time.sleep(atraso)
-
+#você entra no carro
 def road_to_madhouse():
     print('Você entra no carro do delegado, um Ford T, preto e sem janelas,'
           'três vão atrás e um acompanha o motorista. '
@@ -93,10 +93,7 @@ def road_to_madhouse():
 def description_front_propriety():
     print('Está muito frio e vai chover, são 13 horas mas já parece fim de tarde. Chove e a neblina cobre a mansão.'
           'Na frente de vocês há um portão enorme de ferro vazado, onde se veem as letras H P, da família Howard '
-          'Phillips.'
-          'O portão está apenas encostado.')
-    print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
-          ' outro caminho')#'Está muito frio e vai chover'
+          'Phillips. O portão está apenas encostado.')
 #"A mansão é claramente muito antiga".
 def description_mansion():
     print('Você entra na mansão')
@@ -119,14 +116,172 @@ def description_boss():
     coisa mágica e antiga.''')
 def description_backyard(): #'É possível ver a antiga casa.." Descrição precede combate.
     print('Você circula a casa.')
-    print('''
-    É possível ver a antiga casa do caseiro que foi parte demolida na ação da prefeitura e do tempo. Uma árvore tombada e suas raízes cortadas. E não muito mais que isso. Todos sentem algo roçar em suas nucas e o arrepio percorre a espinha.
+    print('''É possível ver a antiga casa do caseiro que foi parte demolida na ação da prefeitura e do tempo. Uma árvore tombada e suas raízes cortadas. E não muito mais que isso. Todos sentem algo roçar em suas nucas e o arrepio percorre a espinha.
     É como o toque do vento frio, ou de uma seda muito fina,mas seja o que for não é algo bom.
     Nesse momento uma rajada de vento chacoalha os galhos das árvores e levanta os pólens das verbenas e lantanas do jardim.''')
-# APRESENTAÇÃO DA TABELA DE PERSONAGENS
+def description_solomons_grave():
+    print('Você segue pelo quintal e passa pelo cemitério')
+    print('Um velho costume de famílias ricas, manter todos os podres por perto')
+    print('E então vê uma sepultura que se destaca entre as demais')
+    print('Algumas palavras estão cravadas na lápide apodrecida:')
+    print('-'*40)
+    print('                               AQUI APODRECE UM LADRÃO')
+    print('''\33[3m
+                                          Nasceu numa segunda;
+                                          Batizou-se numa terça;
+                                          Roubou numa quarta;
+                                          Capturou-se numa quinta;
+                                          Condenou-se numa sexta;
+                                          Enforcou-se num sábado;
+                                          Enterrou-se no domingo;
+                                          E este foi o fim de [------].
+  \033[0;0m''')
+    print('-' * 40)
+def abel_lock_basement():
+    tentativa = 0
+    while tentativa != 3:
+        cadeado = 1
+        jogador = randint(0, 9)
+        print('O cadeado tem 7 de dificuldade')
+        print(f'Você tirou {jogador}')
+        if jogador > cadeado:
+                print('Você ouve um click! Você conseguiu!')
+                abel_inside_basement_the_yellow_king()
+        if cadeado >= jogador:
+           tentativa += 1
+        print(f'tentativa{tentativa}')
+        if tentativa == 3:
+            print('Algo naquela situação te incomoda. A sua concentração não é a mesma')
+            print('Tem dias que a sorte não está para o ladrão')
+            print('Você tem muito medo desse ser o dia do azar')
+            print('É melhor procurar outro caminho')
+            description_solomons_grave()
+            solomons_candle()
+def catch_a_fire():
+    print('Você pega o isqueiro e o pequeno cantil de whisky.')
+    print('Tira o cachecol e encharca com bebida')
+    print('E diz: Ninguém precisa saber o que aconteceu aqui')
+    print('Isso simplesmente não precisa existir')
+    print('E então bota fogo na casa')
+    endgame()
+
+def test_sanity_abel():
+    loucura_abel = randint(0, 1)
+    sanidade_abel = randint(0, 100)
+    print('Ao pisar na propriedade você ouve uma voz que soa como uma lembrança.')
+    print('A voz entoa:')
+    print('''\33[3m
+                                    Lobos dormem noite a dentro
+                                    Morcegos voam ao relento
+                                    Uma alma perdida que dorme jamais
+                                    Com medo de bruxas e sombras fatais
+                                
+                                    Solitária em pesadelo está
+                                    A boneca assombrada pelo LADRÃO
+                                    Pago em ouro e de frio coração
+                                    Que vem e vai sem nada deixar além de aflição.\033[0;0m
+        ''')
+    print('Você sente um incomôdo intenso:.')
+    print('Você nunca foi um homem de fé mas nunca duvidou do sobrenatural, ainda mais depois do que viu naquele dia, naquele quarto.')
+    print(f'Sua incerteza tem um valor de resistência de {sanidade_abel}')
+    print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura_abel}')
+    if sanidade_abel >= loucura_abel:
+        print('Você resistiu!')
+        sleep(1)
+        catch_a_fire()
+    if loucura_abel > sanidade_abel:
+        print('Você sucumbiu!')
+        print('A voz disse:')
+        print('Venha ladrão, tenho um túmulo para você.')
+        print('O Rei de Amarelo te espera!')
+        slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
+        sleep(1.5)
+        endgame()
+def solomons_candle():
+    print('Você se incomoda pelo desprezo com que foi enterrado aquele indivíduo')
+    print('Vê alguns restos de velas nas sepulturas vizinhas e nenhuma naquela')
+    print('Você sente o isqueiro em seu bolso')
+    print('E passa pela sua cabeça acender uma vela pra iluminar aquele ser que não teve luz em vida')
+    acender_vela = ' '
+    while acender_vela not in 'ai':
+        acender_vela = str(input(chose_color('white','Digite [A] para acender uma vela ou [I] para ignorar'))).lower().strip().split()[0]
+        if acender_vela == 'a':
+                    print('Um vento quente sopra das árvores ao redor')
+                    print('Você se sente bem e resolve ir pela porta principal')
+                    description_main_door()
+                    test_sanity_abel()
+        elif acender_vela == 'i':
+                    print('Uma mão sai do túmulo e segura sua perna com força')
+                    monstro = randint(0, 1)
+                    resistencia_abel = randint(0, 15)
+                    print(f'Você força sua perna com uma resistência de {resistencia_abel}')
+                    print(f'A criatura aperta com uma força de {monstro}')
+                    if resistencia_abel > monstro:
+                        print('Você pega sua faca e crava na mão podre da criatura')
+                        print('Você corre em direção a casa!')
+                        sleep(2)
+                        doors()
+                    if monstro > resistencia_abel:
+                        print('Você não consegue se soltar')
+                        print('A força do monstro é absurda')
+                        sleep(1.5)
+                        print('Agora é a vez da aberração!')
+                        sleep(2)
+                    if monstro > resistencia_abel:
+                        print(f'O monstro começa a te puxar para o solo com {monstro} de força e sua resistência é {resistencia_abel}')
+                        sleep(1.5)
+                        print('Ele é mais forte')
+                        sleep(1.5)
+                        print('Ele te puxa pro subsolo')
+                        slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
+                        endgame()
+                    if resistencia_abel > monstro:
+                        sleep(1.5)
+                        print('Ele errou! Você não arrisca e corre!')
+                        sleep(2)
 
 
-def chose_door_or_backyard():
+def abel_chose_garden_or_backyard():
+    print('Você já esteve em propriedades como essa por motivos muito menos nobres')
+    print(
+        'É sempre a mesma estrutura: uma grande porta que dá para uma sala enorme onde todos podem ver quem entra, uma porta lateral para os criados e um porão entre os arbustos')
+    caminho_abel = ' '
+    while caminho_abel not in 'pj':
+        caminho_abel = str(input(
+            '\033[1;97m Digite [P] para seguir pelo porão ou [J] para ir pelo jardim [P/J]:\033[0;0m')).lower().strip().split()[
+            0]
+        if caminho_abel == 'p':
+            print('Você tem 03 tentativas para abrir o cadeado')
+            abel_lock_basement()
+        if caminho_abel == 'j':
+            description_solomons_grave()
+            solomons_candle()
+
+def abel_inside_basement_the_yellow_king():
+    confirmar_alavanca = ' '
+    print('Está muito escuro então você usa seu isqueiro para te guiar.')
+    print('Você pega sua faca e atira contra a criatura.')
+    print('Ela move as mãos e te levanta no ar')
+    print('Você sente todos os músculos e nervos do seu corpo te estirar')
+    print('Ao lado você percebe uma caixa com 3 alavancas ligada a fiação da casa')
+    lâmpada = ' '
+    while confirmar_alavanca != 's':
+        while lâmpada not in 'va':
+            print('\033[1;97mVermelho [V]\nAmarelo [A]\033[0;0m')
+            lâmpada = str(input('\033[1;97mEscolha uma lâmpada acima:')).lower().strip().split()[0]
+            confirmar_alavanca = str(input('Confirma a escolha? [S/N]?:\033[0;0m')).lower().strip().split()[0]
+            print('-' * 40)
+            if lâmpada not in 'va':
+                print('Você optou por ceder! A criatura racha seu corpo')
+                player_died()
+            if lâmpada == 'a':
+                print('Você venceu!')
+                endgame()
+            if lâmpada == 'v':
+                print('Você perdeu!')
+                endgame()
+
+def vlad_chose_door_or_backyard():
     caminho = ' '
     while caminho not in 'pc':
         #description_mansion
@@ -140,22 +295,21 @@ def chose_door_or_backyard():
                 description_backyard()
                 vlad_garden_conflit()
 
-
 def show_burzum_on_the_wall():
     print('Você sente para um arrepio e olha para o lado.')
     print('Algumas palavras estão cravadas na parede:')
     print('-'*40)
     print(format_text_history('italico','''\33[3m
-    Quando a noite cai
-    Ela cobre o mundo
-    Em uma escuridão impenetrável
-    O frio se eleva
-    Do solo
-    E contamina o ar
-    De repente
-    A vida tem um novo significado\033[0;0m'''))
+                                        Quando a noite cai
+                                        Ela cobre o mundo
+                                        Em uma escuridão impenetrável
+                                        O frio se eleva
+                                        Do solo
+                                        E contamina o ar
+                                        De repente
+                                        A vida tem um novo significado
+    \033[0;0m'''))
     print('-' * 40)
-
 
 def test_faith_bill(): # teste de fé do bill com partes de exorcismo real
     loucura = randint(0, 100)
@@ -223,7 +377,6 @@ def test_sanity_vlad():
         sleep(1.5)
         endgame()
 
-
 def test_sanity_bill():
     ouvir = ' '
     while ouvir not in 'oi':
@@ -252,7 +405,6 @@ def test_sanity_bill():
                     sleep(2)
                     test_faith_bill()
                 if loucura_bill > sanidade_bill:
-                    vitoria = 1
                     print('Você sucumbiu!')
                     print('Infiel')
                     slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
@@ -263,22 +415,24 @@ def test_sanity_bill():
                 #description_main_door()
                 doors()
 
-
 def chose_gate_or_jump_the_wall_bill():
-    caminho = ' '
-    while caminho not in 'pm':
-        caminho = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
-        if caminho == 'p':
+    print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
+          ' outro caminho')
+    caminho_bill = ' '
+    while caminho_bill not in 'pm':
+        caminho_bill = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
+        if caminho_bill == 'p':
             print('Você entra pelo portão.')
             test_sanity_bill()#voz
             description_mansion()
-        elif caminho == 'm':  # MURO
+        elif caminho_bill == 'm':  # MURO
             print('Você decide sair do óbvio e procura um lugar para pular o muro e ter acesso ao quintal')
             description_backyard()
             bill_garden_conflit()
 
-
 def chose_gate_or_jump_the_wall_vlad():
+    print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
+          ' outro caminho')
     caminho = ' '
     while caminho not in 'pm':
         caminho = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
@@ -291,7 +445,6 @@ def chose_gate_or_jump_the_wall_vlad():
             description_backyard()
             vlad_garden_conflit()
             doors()
-
 
 def vlad_garden_conflit():
     print('Então algo pula em você!')
@@ -364,8 +517,6 @@ def bill_garden_conflit():
         print('O jogo acabou pra você')
         sleep(1)
 
-
-
 #Caso o jogador morra
 def player_died():
     slowprint('\033[31mMais uma vítima da casa!\033[0;0m')
@@ -374,7 +525,7 @@ def player_died():
 def select_character():     # ESCOLHA DO PERSONAGEM
     personagem = ' '
     confirmar = ' '
-    sleep(1.5)
+    sleep(1)
     while confirmar != 's':#COMO TRANSFORMAR ESSA PERGUNTA DE CONFIRMAÇÃO EM DEF?
         while personagem not in 'vba':
             format_option('\033[1;97mVlad [V]\nBill [B]\nAbel [A]\033[0;0m')
@@ -393,15 +544,16 @@ def select_character():     # ESCOLHA DO PERSONAGEM
                     road_to_madhouse()
                     description_front_propriety()
                     chose_gate_or_jump_the_wall_vlad()
-                    #description_mansion() ja coloquei em doord or backyar
-                    chose_door_or_backyard()
-                    #description_main_door()
+                    vlad_chose_door_or_backyard()
                     test_sanity_vlad()
                     doors()
             elif personagem == 'a':
                     print('\033[1;97m Você escolheu Abel!')
                     print('>>>>ABEL diz:...\033[0;0m', end='')
                     print('O que vocês querem de novo?! Ah.. Chego em breve!')
+                    road_to_madhouse()
+                    description_front_propriety()
+                    abel_chose_garden_or_backyard()
             elif personagem == 'b':
                     print('\033[1;97m Você escolheu Bill!')
                     print('>>>>Bill diz:...\033[0;0m',end='')
@@ -409,7 +561,6 @@ def select_character():     # ESCOLHA DO PERSONAGEM
                     road_to_madhouse()
                     description_front_propriety()
                     chose_gate_or_jump_the_wall_bill()
-
 def vlad_attack():
     monstro = randint(0, 10)
     ataque_personagem = randint(0, 10)
