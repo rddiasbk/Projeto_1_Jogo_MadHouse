@@ -1,3 +1,11 @@
+import random
+import Config
+import desc
+import time
+
+abel_input_color = 'blue'
+
+# NÃO COLOCAR MAIS IMPORT JOGO QUE DÁ RUIM
 def abel_chose_garden_or_backyard():
     print('Você já esteve em propriedades como essa por motivos muito menos nobres')
     print(
@@ -11,8 +19,9 @@ def abel_chose_garden_or_backyard():
             print('Você tem 03 tentativas para abrir o cadeado')
             abel_lock_basement()
         if caminho_abel == 'j':
-            description_solomons_grave()
+            desc.description_solomons_grave()
             solomons_candle()
+
 
 def abel_inside_basement_the_yellow_king():
     confirmar_alavanca = ' '
@@ -30,20 +39,19 @@ def abel_inside_basement_the_yellow_king():
             print('-' * 40)
             if lâmpada not in 'va':
                 print('Você optou por ceder! A criatura racha seu corpo')
-                player_died()
+                Config.player_died()
             if lâmpada == 'a':
                 print('Você venceu!')
-                endgame()
+
             if lâmpada == 'v':
                 print('Você perdeu!')
-                endgame()
 
 
 def abel_lock_basement():
     tentativa = 0
     while tentativa != 3:
         cadeado = 1
-        jogador = randint(0, 9)
+        jogador = random.randint(0, 9)
         print('O cadeado tem 7 de dificuldade')
         print(f'Você tirou {jogador}')
         if jogador > cadeado:
@@ -57,8 +65,8 @@ def abel_lock_basement():
             print('Tem dias que a sorte não está para o ladrão')
             print('Você tem muito medo desse ser o dia do azar')
             print('É melhor procurar outro caminho')
-            description_solomons_grave()
-            solomons_candle()
+            desc.description_solomons_grave()
+            desc.solomons_candle()
 
 
 def catch_a_fire():
@@ -67,12 +75,11 @@ def catch_a_fire():
     print('E diz: Ninguém precisa saber o que aconteceu aqui')
     print('Isso simplesmente não precisa existir')
     print('E então bota fogo na casa')
-    endgame()
 
 
 def test_sanity_abel():
-    loucura_abel = randint(0, 1)
-    sanidade_abel = randint(0, 100)
+    loucura_abel = random.randint(0, 1)
+    sanidade_abel = random.randint(0, 100)
     print('Ao pisar na propriedade você ouve uma voz que soa como uma lembrança.')
     print('A voz entoa:')
     print('''\33[3m
@@ -93,16 +100,26 @@ def test_sanity_abel():
     print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura_abel}')
     if sanidade_abel >= loucura_abel:
         print('Você resistiu!')
-        sleep(1)
+        time.sleep(1)
         catch_a_fire()
     if loucura_abel > sanidade_abel:
         print('Você sucumbiu!')
         print('A voz disse:')
         print('Venha ladrão, tenho um túmulo para você.')
         print('O Rei de Amarelo te espera!')
-        slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
-        sleep(1.5)
-        endgame()
+        Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
+        time.sleep(1.5)
+
+
+def format_text_history(chose_color, texto):
+    print(chose_color('italico', (f"{texto:^80}")))
+
+
+# FORMATAÇÃO DE UM TRECHO
+def format_option(opc):
+    print('-' * 40)
+    print(opc)
+    print('-' * 40)
 
 
 def solomons_candle():
@@ -112,40 +129,56 @@ def solomons_candle():
     print('E passa pela sua cabeça acender uma vela pra iluminar aquele ser que não teve luz em vida')
     acender_vela = ' '
     while acender_vela not in 'ai':
-        acender_vela = str(input(
-            chose_color('white', 'Digite [A] para acender uma vela ou [I] para ignorar'))).lower().strip().split()[0]
+        print("Digite [A] para acender uma vela ou [I] para ignorar")
+        acender_vela = Config.get_value(abel_input_color)
+
         if acender_vela == 'a':
             print('Um vento quente sopra das árvores ao redor')
             print('Você se sente bem e resolve ir pela porta principal')
-            description_main_door()
+            desc.description_main_door()
             test_sanity_abel()
         elif acender_vela == 'i':
             print('Uma mão sai do túmulo e segura sua perna com força')
-            monstro = randint(0, 1)
-            resistencia_abel = randint(0, 15)
+            monstro = random.randint(0, 1)
+            resistencia_abel = random.randint(0, 15)
             print(f'Você força sua perna com uma resistência de {resistencia_abel}')
             print(f'A criatura aperta com uma força de {monstro}')
             if resistencia_abel > monstro:
                 print('Você pega sua faca e crava na mão podre da criatura')
                 print('Você corre em direção a casa!')
-                sleep(2)
-                doors()
+                time.sleep(2)
+                Config.doors()
             if monstro > resistencia_abel:
                 print('Você não consegue se soltar')
                 print('A força do monstro é absurda')
-                sleep(1.5)
+                time.sleep(1.5)
                 print('Agora é a vez da aberração!')
-                sleep(2)
+                time.sleep(2)
             if monstro > resistencia_abel:
                 print(
                     f'O monstro começa a te puxar para o solo com {monstro} de força e sua resistência é {resistencia_abel}')
-                sleep(1.5)
+                time.sleep(1.5)
                 print('Ele é mais forte')
-                sleep(1.5)
+                time.sleep(1.5)
                 print('Ele te puxa pro subsolo')
-                slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
-                endgame()
+                Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
+
             if resistencia_abel > monstro:
-                sleep(1.5)
+                time.sleep(1.5)
                 print('Ele errou! Você não arrisca e corre!')
-                sleep(2)
+                time.sleep(2)
+
+
+def chart():
+    personagem = ('Personagem 3:', 'Abel ', 'Profissão:', 'Ladrão', 'Experiência Paranormal:', 'Viu um demônio.',
+                  'Trauma:', 'A morte de uma criança.', 'Característica:', 'Descrença.')
+
+    Config.character_chart(personagem)
+
+def play():
+    print('\033[1;97m Você escolheu Abel!')
+    print('>>>>ABEL diz:...\033[0;0m', end='')
+    print('O que vocês querem de novo?! Ah.. Chego em breve!')
+    desc.character_description()
+    abel_chose_garden_or_backyard()
+    abel_lock_basement()
