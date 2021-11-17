@@ -60,7 +60,7 @@ def description_burzum_on_the_wall():
     print('Você sente para um arrepio e olha para o lado.')
     print('Algumas palavras estão cravadas na parede:')
     print('-'*40)
-    print(format_text_history('italico','''\33[3m
+    print('italico','''\33[3m
                                         Quando a noite cai
                                         Ela cobre o mundo
                                         Em uma escuridão impenetrável
@@ -69,5 +69,5 @@ def description_burzum_on_the_wall():
                                         E contamina o ar
                                         De repente
                                         A vida tem um novo significado
-    \033[0;0m'''))
+    \033[0;0m''')
     print('-' * 40)
