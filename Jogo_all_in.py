@@ -12,6 +12,8 @@ bill = (
     'Trauma:', 'A morte do filho.')
 abel = ('Personagem 3:', 'Abel ', 'Profissão:', 'Ladrão', 'Experiência Paranormal:', 'Viu um demônio.',
         'Trauma:', 'A morte de uma criança.')
+
+
 def test_sanity_bill():
     ouvir = ' '
     while ouvir not in 'oi':
@@ -31,13 +33,14 @@ def test_sanity_bill():
     ''')
         print('Você sente um incomôdo intenso:.')
         while ouvir not in 'oi':
-            ouvir = str(input('\033[1;97mDigite O para ouvir ou I para ignorar [O/I]:\033[0;0m')).lower().strip().split()[0]
+            ouvir = \
+                str(input('\033[1;97mDigite O para ouvir ou I para ignorar [O/I]:\033[0;0m')).lower().strip().split()[0]
             if ouvir == 'o':
                 print(f'Sua fé divinina te da uma resistência {sanidade_bill}')
                 print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura_bill}')
                 if sanidade_bill >= loucura_bill:
                     print('Você resistiu! Você sabia que sua fé seria maior! ')
-                    sleep(2)
+                    sleep(1.5)
                     test_faith_bill()
                 if loucura_bill > sanidade_bill:
                     print('Você sucumbiu!')
@@ -45,31 +48,36 @@ def test_sanity_bill():
                     Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
                     sleep(1.5)
                     endgame()
-            elif ouvir == 'i':
+            if ouvir == 'i':
                 desc.description_mansion()
-                #description_main_door()
                 doors()
+
+
 def chose_gate_or_jump_the_wall_bill():
     print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
           ' outro caminho')
     caminho_bill = ' '
     while caminho_bill not in 'pm':
-        caminho_bill = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
+        caminho_bill = str(input(
+            '\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[
+            0]
         if caminho_bill == 'p':
             print('Você entra pelo portão.')
-            test_sanity_bill()#voz
-            desc.description_mansion()
-        elif caminho_bill == 'm':  # MURO
+            test_sanity_bill()  # voz
+        if caminho_bill == 'm':  # MURO
             print('Você decide sair do óbvio e procura um lugar para pular o muro e ter acesso ao quintal')
             desc.description_backyard()
             bill_garden_conflit()
+
+
 def bill_garden_conflit():
     monstrinhos = randint(0, 10)
     ataque_bill = randint(0, 15)
     print('Você ouve a voz do seu filho!')
     print('Ele grita: Pai atrás do seu lado!')
     print('Você se depara com uma cena horrível.')
-    print('De buracos no chão eclodem criaturas magricelas, asquerosas e moles. Os monstrinhos tem bolhas que crescem e explodem conforme elas se movimentam, algumas pingam pus outras e escorrem vermes.')
+    print(
+        'De buracos no chão eclodem criaturas magricelas, asquerosas e moles. Os monstrinhos tem bolhas que crescem e explodem conforme elas se movimentam, algumas pingam pus outras e escorrem vermes.')
     print('Você saca rapidamente e atira.')
     print(f'Seu tiro causou {ataque_bill} de dano')
     print(f'O monstro tinha uma defesa de {monstrinhos}')
@@ -83,26 +91,19 @@ def bill_garden_conflit():
         sleep(1.5)
         print('Agora é a vez das pequenas criaturas!')
         sleep(2)
-    if monstrinhos > ataque_bill:
+    if monstrinhos == ataque_bill:
         print(f'O monstro te atacou com {monstrinhos} e sua defesa foi {ataque_bill}')
         sleep(1.5)
         print('Um deles morde sua perna!')
         print('Você sente seu sangue queimar a partir da mordida')
-        print('Não é a primeira vez que você foi envenenado, mas você sabe que aquele veneno é muito mais potente do que qualquer cobra que já tenha encontrado no campo.')
+        print(
+            'Não é a primeira vez que você foi envenenado, mas você sabe que aquele veneno é muito mais potente do que qualquer cobra que já tenha encontrado no campo.')
         sleep(1.5)
         Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
         endgame()
-    if ataque_bill > monstrinhos:
-        sleep(1.5)
-        print('Ele errou! Você não arrisca e corre!')
-        print('A voz do seu filho retorna:')
-        print('Pai, não se arrisque, os pequenos te esperam em casa!')
-        print('Obrigado por tudo, eu vou descansar!')
-        print('Você corre em direção ao portão com as criaturas ganindo atrás de você')
-        print('Você sai daquele lugar insano e retorna até sua família!')
-        print('O jogo acabou pra você')
-        sleep(1)
-def test_faith_bill(): # teste de fé do bill com partes de exorcismo real
+
+
+def test_faith_bill():  # teste de fé do bill com partes de exorcismo real
     loucura = randint(0, 100)
     sanidade = randint(0, 100)
     print('A voz ecoa com força em sua mente!')
@@ -123,8 +124,9 @@ def test_faith_bill(): # teste de fé do bill com partes de exorcismo real
         print(f'Sua fé divina aumenta sua resistência em {sanidade}')
         print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura}')
         if sanidade >= loucura:
-            print('Acorrei, Condutor invencível, em auxílio do Povo de Deus contra as seduções espirituais que se erguem'
-                  'e que vençamos!')
+            print(
+                'Acorrei, Condutor invencível, em auxílio do Povo de Deus contra as seduções espirituais que se erguem'
+                'e que vençamos!')
             print('A voz desvanece e some!')
             print('\033[1;33mGANHOU O JOGO!!!\033[0;0m')
             endgame()
@@ -139,6 +141,8 @@ Perdida...Perdida....Perdida...''')
         print('RIYL’EH – BUADIH – GELB – RUMENA – GWELLER - - GUL – ZHELTYY - HWANGSAEG')
         Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
         sleep(1.5)
+
+
 def abel_chose_garden_or_backyard():
     print('Você já esteve em propriedades como essa por motivos muito menos nobres')
     print(
@@ -154,6 +158,7 @@ def abel_chose_garden_or_backyard():
         if caminho_abel == 'j':
             desc.description_solomons_grave()
             solomons_candle()
+
 
 def abel_inside_basement_the_yellow_king():
     confirmar_alavanca = ' '
@@ -174,11 +179,16 @@ def abel_inside_basement_the_yellow_king():
                 Config.player_died()
                 endgame()
             if lâmpada == 'a':
+                catch_a_fire()
                 print('Você venceu!')
                 endgame()
             if lâmpada == 'v':
+                print(
+                    'Uma escolha pode definir o fim da vida. As vezes ao puxar do gatilho. As vezes ao puxar uma alavanca.')
                 print('Você perdeu!')
                 endgame()
+
+
 def abel_lock_basement():
     tentativa = 0
     while tentativa != 3:
@@ -276,7 +286,7 @@ def solomons_candle():
                 sleep(1.5)
                 print('Agora é a vez da aberração!')
                 sleep(2)
-            if monstro > resistencia_abel:
+
                 print(
                     f'O monstro começa a te puxar para o solo com {monstro} de força e sua resistência é {resistencia_abel}')
                 sleep(1.5)
@@ -285,25 +295,30 @@ def solomons_candle():
                 print('Ele te puxa pro subsolo')
                 Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
                 endgame()
-            if resistencia_abel > monstro:
+            if resistencia_abel == monstro:
                 sleep(1.5)
                 print('Ele errou! Você não arrisca e corre!')
                 sleep(2)
+                doors()
+
+
 def vlad_chose_door_or_backyard():
     caminho = ' '
     while caminho not in 'pc':
-        #description_mansion
-        caminho = str(input(f'\033[1;97m Digite P para entrar pela PORTA CENTRAL ou C para circular a casa [P/C]:\033[0;0m')).lower().strip().split()[0]
+        caminho = str(input(
+            f'\033[1;97m Digite P para entrar pela PORTA CENTRAL ou C para circular a casa [P/C]:\033[0;0m')).lower().strip().split()[
+            0]
         if caminho == 'p':  # PORTA PRINCIPAL
             desc.description_main_door()
             test_sanity_vlad()
             doors()
 
         if caminho == 'c':
-                desc.description_backyard()
-                vlad_garden_conflit()
+            desc.description_backyard()
+            vlad_garden_conflit()
+
+
 def test_sanity_vlad():
-    #teste de sanidade
     loucura = randint(0, 10)
     sanidade = randint(0, 100)
     print(f'Sua crença no método científico te da uma resistência {sanidade}')
@@ -312,22 +327,26 @@ def test_sanity_vlad():
         print('Você resistiu! Você sabia que sua crença na razão seria maior! ')
         sleep(2)
         print('Você vai logo para dentro da casa')
-        desc.description_mansion()
+        #desc.description_mansion()
     elif loucura > sanidade:
-        vitoria = 1
         print('Você sucumbiu!')
         print('Infiel')
         Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
         sleep(1.5)
         endgame()
+
+
 def chose_gate_or_jump_the_wall_vlad():
     print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
           ' outro caminho')
     caminho = ' '
     while caminho not in 'pm':
-        caminho = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
+        caminho = str(input(
+            '\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[
+            0]
         if caminho == 'p':
             print('Você entra pelo portão.')
+            sleep(1.5)
             desc.description_mansion()
         if caminho == 'm':  # MURO
             print('Você decide sair do óbvio e procura um lugar para pular o muro e ter acesso ao quintal')
@@ -335,6 +354,8 @@ def chose_gate_or_jump_the_wall_vlad():
             desc.description_backyard()
             vlad_garden_conflit()
             doors()
+
+
 def vlad_garden_conflit():
     print('Então algo pula em você!')
     print('Você desvia rapidamente!')
@@ -345,26 +366,24 @@ def vlad_garden_conflit():
     print(f'Seu tiro causou {ataque_personagem} de dano')
     print(f'O monstro tinha uma defesa de {monstrinho}')
     if ataque_personagem > monstrinho:
-            print('Você acertou e foi o fim da criatura!')
-            print('É melhor entrar de vez na casa!')
-            sleep(2)
-            doors()
-    if monstrinho > ataque_personagem:
-            print('Você errou!')
-            sleep(1.5)
-            print('Agora é a vez da aberração!')
-            sleep(2)
-    if monstrinho > ataque_personagem:
-            print(f'O monstro te atacou com {monstrinho} e sua defesa foi {ataque_personagem}')
-            sleep(1.5)
-            print('Ele te acertou!')
-            sleep(1.5)
-            Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
-            endgame()
-    if ataque_personagem > monstrinho:
-            sleep(1.5)
-            print('Ele errou! Você não arrisca e corre!')
-            sleep(2)
+        print('Você acertou e foi o fim da criatura!')
+        print('É melhor entrar de vez na casa!')
+        sleep(2)
+        doors()
+    elif monstrinho > ataque_personagem:
+        print(f'O monstro te atacou com {monstrinho} e sua defesa foi {ataque_personagem}')
+        sleep(1.5)
+        print('Ele te acertou!')
+        sleep(1.5)
+        Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
+        endgame()
+    if ataque_personagem == monstrinho:
+        sleep(1.5)
+        print('Ele errou! Você não arrisca e corre!')
+        sleep(2)
+        doors()
+
+
 def vlad_attack():
     monstro = randint(0, 10)
     ataque_personagem = randint(0, 10)
@@ -385,11 +404,13 @@ def vlad_attack():
         print('Agora é a vez do monstro')
         sleep(1.5)
         monster_attack()
+
+
 def doors():
     print('''Você olha desesperado e nota 3 portas diferentes.
-        Você sabe que toda a verdade se revelará atrá de uma daquelas portas. 
-        Chegou a hora!''')
-    # time.sleep(1.5)
+    Você sabe que toda a verdade se revelará atrá de uma daquelas portas. 
+    Chegou a hora!''')
+    sleep(1.5)
     print('Escolha uma porta:')
     porta = ' '
     while porta not in 'var':
@@ -397,20 +418,22 @@ def doors():
         print('\033[1;97m>' * 10, '\033[1;33mPORTA AMARELA [A]\033[0;0m')
         print('\033[1;97m>' * 10, '\033[1;35mPORTA ROXA [R]\033[0;0m')
         print('')
+        sleep(1.5)
         porta = str(input('\033[1;97mEscolha a porta:\033[0;0m')).lower().strip().split()[0]
         print('-' * 40)
+        sleep(1.5)
         if porta == 'v':
             print('Você ouve o som do descarrilhar de correntes e sente uma dor intensa em seu abdomen! '
                   '\nUma lança te atravessa! '
                   '\nChegou seu fim!')
             Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
             print(' ')
-
+            endgame()
         if porta == 'a':
             print('As portas se trancam atrás de você! A sala é preenchida por gás.')
             Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
             print(' ')
-
+            endgame()
         if porta == 'r':
             print('Inimigo apareceu!')
             desc.description_boss()
@@ -419,21 +442,26 @@ def doors():
             time.sleep(1)
         if porta not in 'var':
             print('Isso não é uma porta. Tente novamente!')
+
+
 def vlad_chose_door_or_backyard():
     caminho = ' '
     while caminho not in 'pc':
-        #description_mansion
-        caminho = str(input(f'\033[1;97m Digite P para entrar pela PORTA CENTRAL ou C para circular a casa [P/C]:\033[0;0m')).lower().strip().split()[0]
+        caminho = str(input(
+            f'\033[1;97m Digite P para entrar pela PORTA CENTRAL ou C para circular a casa [P/C]:\033[0;0m')).lower().strip().split()[
+            0]
         if caminho == 'p':  # PORTA PRINCIPAL
             desc.description_main_door()
             test_sanity_vlad()
             doors()
 
         if caminho == 'c':
-                desc.description_backyard()
-                vlad_garden_conflit()
+            desc.description_backyard()
+            vlad_garden_conflit()
+
+
 def test_sanity_vlad():
-    #teste de sanidade
+    # teste de sanidade
     loucura = randint(0, 10)
     sanidade = randint(0, 100)
     print(f'Sua crença no método científico te da uma resistência {sanidade}')
@@ -442,20 +470,25 @@ def test_sanity_vlad():
         print('Você resistiu! Você sabia que sua crença na razão seria maior! ')
         sleep(2)
         print('Você vai logo para dentro da casa')
-        desc.description_mansion()
+        sleep(1.5)
+
+
     elif loucura > sanidade:
-        vitoria = 1
         print('Você sucumbiu!')
         print('Infiel')
         Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
         sleep(1.5)
         endgame()
+
+
 def chose_gate_or_jump_the_wall_vlad():
     print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
           ' outro caminho')
     caminho = ' '
     while caminho not in 'pm':
-        caminho = str(input('\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[0]
+        caminho = str(input(
+            '\033[1;97mDigite P para entrar pelo PORTÃO ou M para pular o MURO [P/M]:\033[0;0m')).lower().strip().split()[
+            0]
         if caminho == 'p':
             print('Você entra pelo portão.')
             desc.description_mansion()
@@ -465,6 +498,8 @@ def chose_gate_or_jump_the_wall_vlad():
             desc.description_backyard()
             vlad_garden_conflit()
             doors()
+
+
 def vlad_garden_conflit():
     print('Então algo pula em você!')
     print('Você desvia rapidamente!')
@@ -475,26 +510,28 @@ def vlad_garden_conflit():
     print(f'Seu tiro causou {ataque_personagem} de dano')
     print(f'O monstro tinha uma defesa de {monstrinho}')
     if ataque_personagem > monstrinho:
-            print('Você acertou e foi o fim da criatura!')
-            print('É melhor entrar de vez na casa!')
-            sleep(2)
-            doors()
+        print('Você acertou e foi o fim da criatura!')
+        print('É melhor entrar de vez na casa!')
+        sleep(2)
+        doors()
     if monstrinho > ataque_personagem:
-            print('Você errou!')
-            sleep(1.5)
-            print('Agora é a vez da aberração!')
-            sleep(2)
+        print('Você errou!')
+        sleep(1.5)
+        print('Agora é a vez da aberração!')
+        sleep(2)
     if monstrinho > ataque_personagem:
-            print(f'O monstro te atacou com {monstrinho} e sua defesa foi {ataque_personagem}')
-            sleep(1.5)
-            print('Ele te acertou!')
-            sleep(1.5)
-            Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
-            endgame()
+        print(f'O monstro te atacou com {monstrinho} e sua defesa foi {ataque_personagem}')
+        sleep(1.5)
+        print('Ele te acertou!')
+        sleep(1.5)
+        Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
+        endgame()
     if ataque_personagem > monstrinho:
-            sleep(1.5)
-            print('Ele errou! Você não arrisca e corre!')
-            sleep(2)
+        sleep(1.5)
+        print('Ele errou! Você não arrisca e corre!')
+        sleep(2)
+
+
 def vlad_attack():
     monstro = randint(0, 10)
     ataque_personagem = randint(0, 10)
@@ -531,6 +568,7 @@ def main():
         print('_' * 30)
         print('Veja qual personagem você pode chamar:')
         print('_' * 30)
+        sleep(1.5)
         character_chart(vlad)
         character_chart(bill)
         character_chart(abel)
@@ -565,19 +603,22 @@ def format_text_history(estilo, texto):
 
 # JOGAR NOVAMENTE?
 def endgame():
-    resposta = (input('\n\nDigite J para jogar denovo ou digite qualquer tecla para sair! :')).lower().strip().split()[
-        0]
-    if resposta == 'j':
-        main()
-    else:
-        print('Então tá, até a próxima.')
+    jogo = True
+    while jogo:
+        resposta = \
+        (input('\n\nDigite J para jogar denovo ou digite qualquer letra para sair! :')).lower().strip().split()[0]
+        if resposta == 'j':
+            jogo == True
+            main()
+        elif resposta != 'j':
+            print('Então tá, até a próxima.')
+            break
 
-
-# FORMATAÇÃO DE UM TRECHO
 def format_option(opc):
     print('-' * 40)
     print(opc)
     print('-' * 40)
+
 
 def character_chart(char):
     # sleep(1.5)
@@ -587,8 +628,6 @@ def character_chart(char):
             print(f'\033[1;97m {char[pos]:-<20}\033[0;0m', end='')
         if pos % 2 != 0:
             print(f' {char[pos]:>6}')
-
-
 
 
 def select_character():  # ESCOLHA DO PERSONAGEM
@@ -614,7 +653,7 @@ def select_character():  # ESCOLHA DO PERSONAGEM
                 desc.description_front_propriety()
                 chose_gate_or_jump_the_wall_vlad()
                 vlad_chose_door_or_backyard()
-                test_sanity_vlad()
+
 
             elif personagem == 'a':
                 print('\033[1;97m Você escolheu Abel!')
@@ -630,6 +669,7 @@ def select_character():  # ESCOLHA DO PERSONAGEM
                 desc.description_road_to_madhouse()
                 desc.description_front_propriety()
                 chose_gate_or_jump_the_wall_bill()
+
 
 def character_attack():
     monstro = random.randint(0, 10)
@@ -672,10 +712,6 @@ def monster_attack():
         print('\033[1;33mGANHOU O JOGO!!!\033[0;0m')
         time.sleep(1.5)
         endgame()
-
-'''def final_battle():
-    monster_attack()
-    vlad_game.vlad_attack()'''
 
 
 main()

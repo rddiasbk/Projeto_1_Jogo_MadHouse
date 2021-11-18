@@ -169,5 +169,5 @@ def play():
     print('\033[1;97m Você escolheu Bill!')
     print('>>>>Bill diz:...\033[0;0m', end='')
     print('Vamos matar esse bicho!')
-    desc.character_description()
+    desc.description_road_to_propriety()
     chose_gate_or_jump_the_wall_bill()

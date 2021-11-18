@@ -120,7 +120,7 @@ def chart():
 
 def play():
     vlad_says_hello()
-    desc.character_description()
+    desc.description_road_to_propriety()
     chose_gate_or_jump_the_wall_vlad()
     vlad_chose_door_or_backyard()
 

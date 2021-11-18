@@ -3,17 +3,16 @@ import Config
 
 def description_road_to_madhouse():
     return print('''Você entra no carro do delegado, um Ford T, preto e sem janelas, três vão atrás e um acompanha o motorista.Vocês partem e atravessam a cidade. No caminho veem as chaminés, verdadeiros dragões cuspindo fumaça preta no céu acinzentado.
-          Raios começam a cair atrás de vocês e trovões o seguem. Vai chover, mais uma tarde chuvosa. Como tem sido por todo o outono.O carro vai trepidando nos pavimentos de pedra. Na periferia vocês sentem o calor e o fedor dos gases dosdetritos jogados na rua nos cortiços dos operários da fábrica.Crianças de 2 e 3 anos cuidadas por meninas de 05,
-          um tanto esqueléticas porém de barrigas inchadas,olham hipnotizadas enquanto vocês passam.''')
+    Raios começam a cair atrás de vocês e trovões o seguem. Vai chover, mais uma tarde chuvosa. Como tem sido por todo o outono.O carro vai trepidando nos pavimentos de pedra. Na periferia vocês sentem o calor e o fedor dos gases dosdetritos jogados na rua nos cortiços dos operários da fábrica.Crianças de 2 e 3 anos cuidadas por meninas de 05,
+    um tanto esqueléticas porém de barrigas inchadas,olham hipnotizadas enquanto vocês passam.''')
 
 
 def description_front_propriety():
         print('''Está muito frio e vai chover, são 13 horas mas já parece fim de tarde. Chove e a neblina cobre a mansão.
-              Na frente de vocês há um portão enorme de ferro vazado, onde se veem as letras H P, da família Howard 
-              Phillips. O portão está apenas encostado.''')
+        Na frente de vocês há um portão enorme de ferro vazado, onde se veem as letras H P, da família Howard Phillips. O portão está apenas encostado.''')
 #"A mansão é claramente muito antiga".
 
-def character_description():
+def description_road_to_propriety():
     description_road_to_madhouse()
     description_front_propriety()
 def description_mansion():
@@ -22,7 +21,7 @@ def description_mansion():
           'É alta, com 2 andares muito largos. Em cada canto da casa há estatuetas apoiadas por uma torre.'
           'Nelas repousam gárgulas com olhos famintos que parecem querer devorar o inimigo ou talvez proteger ferozmente'
           ' o seu dono das ameaças que vem distante.')
-#"A porta de entrada é enorme e pesada"...
+
 def description_main_door():
     print('A porta de entrada é enorme e pesada. Também está só encostada. A porta entreaberta revela atrás de si um grande salão,'
           'com piso quadriculado em preto e branco, parecendo um grande xadrez. Você entra e se sente como um peão do tabuleiro.'

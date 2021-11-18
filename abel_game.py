@@ -179,6 +179,6 @@ def play():
     print('\033[1;97m Você escolheu Abel!')
     print('>>>>ABEL diz:...\033[0;0m', end='')
     print('O que vocês querem de novo?! Ah.. Chego em breve!')
-    desc.character_description()
+    desc.description_road_to_propriety()
     abel_chose_garden_or_backyard()
     abel_lock_basement()
