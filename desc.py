@@ -9,7 +9,7 @@ def description_road_to_madhouse():
 
 def description_front_propriety():
         print('''Está muito frio e vai chover, são 13 horas mas já parece fim de tarde. Chove e a neblina cobre a mansão.
-        Na frente de vocês há um portão enorme de ferro vazado, onde se veem as letras H P, da família Howard Phillips. O portão está apenas encostado.''')
+    Na frente de vocês há um portão enorme de ferro vazado, onde se veem as letras H P, da família Howard Phillips. O portão está apenas encostado.''')
 #"A mansão é claramente muito antiga".
 
 def description_road_to_propriety():

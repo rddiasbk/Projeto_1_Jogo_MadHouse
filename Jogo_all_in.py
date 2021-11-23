@@ -36,8 +36,10 @@ def test_sanity_bill():
             ouvir = \
                 str(input('\033[1;97mDigite O para ouvir ou I para ignorar [O/I]:\033[0;0m')).lower().strip().split()[0]
             if ouvir == 'o':
+                print('-' * 100)
                 print(f'Sua fé divinina te da uma resistência {sanidade_bill}')
                 print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura_bill}')
+                print('-' * 100)
                 if sanidade_bill >= loucura_bill:
                     print('Você resistiu! Você sabia que sua fé seria maior! ')
                     sleep(1.5)
@@ -51,7 +53,6 @@ def test_sanity_bill():
             if ouvir == 'i':
                 desc.description_mansion()
                 doors()
-
 
 def chose_gate_or_jump_the_wall_bill():
     print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
@@ -68,7 +69,6 @@ def chose_gate_or_jump_the_wall_bill():
             print('Você decide sair do óbvio e procura um lugar para pular o muro e ter acesso ao quintal')
             desc.description_backyard()
             bill_garden_conflit()
-
 
 def bill_garden_conflit():
     monstrinhos = randint(0, 10)
@@ -102,15 +102,16 @@ def bill_garden_conflit():
         Config.slowprint('\033[1;31mVOCÊ MORREU!\033[0;0m')
         endgame()
 
-
 def test_faith_bill():  # teste de fé do bill com partes de exorcismo real
     loucura = randint(0, 100)
     sanidade = randint(0, 100)
     print('A voz ecoa com força em sua mente!')
     print('Ela te persegue conforme você caminha.')
     print('Você precisa testar sua fé contra a maldade do ser:')
+    print('-' * 100)
     print(f'Sua fé divinina te da uma resistência {sanidade}')
     print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura}')
+    print('-' * 100)
     if sanidade >= loucura:
         print('Você inicia uma oração:')
         print('Gloriosíssimo Príncipe da Milícia Celeste, São Miguel Arcanjo, defenda-nos no Combate e nas lutas,'
@@ -121,8 +122,10 @@ def test_faith_bill():  # teste de fé do bill com partes de exorcismo real
               'e seus anjos rebeldes.')
         loucura = randint(0, 100)
         sanidade = randint(0, 110)
+        print('-' * 100)
         print(f'Sua fé divina aumenta sua resistência em {sanidade}')
         print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura}')
+        print('-' * 100)
         if sanidade >= loucura:
             print(
                 'Acorrei, Condutor invencível, em auxílio do Povo de Deus contra as seduções espirituais que se erguem'
@@ -142,7 +145,6 @@ Perdida...Perdida....Perdida...''')
         Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
         sleep(1.5)
 
-
 def abel_chose_garden_or_backyard():
     print('Você já esteve em propriedades como essa por motivos muito menos nobres')
     print(
@@ -159,28 +161,31 @@ def abel_chose_garden_or_backyard():
             desc.description_solomons_grave()
             solomons_candle()
 
-
 def abel_inside_basement_the_yellow_king():
     confirmar_alavanca = ' '
     print('Está muito escuro então você usa seu isqueiro para te guiar.')
     print('Você pega sua faca e atira contra a criatura.')
     print('Ela move as mãos e te levanta no ar')
     print('Você sente todos os músculos e nervos do seu corpo te estirar')
-    print('Ao lado você percebe uma caixa com 3 alavancas ligada a fiação da casa')
+    print('Ao lado você percebe uma caixa com 3 alavancas ligada a fiação da casa!')
+    print('Cada uma ligada a uma lâmpada colorida.')
+    print('Escolha e puxe uma das alavancas')
     lâmpada = ' '
-    while confirmar_alavanca != 's':
+    while confirmar_alavanca not in 's':
         while lâmpada not in 'va':
+            print('Alavanca da lâmpada:')
             print('\033[1;97mVermelho [V]\nAmarelo [A]\033[0;0m')
             lâmpada = str(input('\033[1;97mEscolha uma lâmpada acima:')).lower().strip().split()[0]
             confirmar_alavanca = str(input('Confirma a escolha? [S/N]?:\033[0;0m')).lower().strip().split()[0]
-            print('-' * 40)
+            print('=' * 40)
+            if confirmar_alavanca == 'n':
+                abel_inside_basement_the_yellow_king()
             if lâmpada not in 'va':
                 print('Você optou por ceder! A criatura racha seu corpo')
                 Config.player_died()
                 endgame()
             if lâmpada == 'a':
                 catch_a_fire()
-                print('Você venceu!')
                 endgame()
             if lâmpada == 'v':
                 print(
@@ -188,21 +193,22 @@ def abel_inside_basement_the_yellow_king():
                 print('Você perdeu!')
                 endgame()
 
-
 def abel_lock_basement():
     tentativa = 0
-    while tentativa != 3:
-        cadeado = 1
-        jogador = randint(0, 9)
-        print('O cadeado tem 7 de dificuldade')
+    while tentativa == False:
+        cadeado = 5
+        jogador = randint(0, 10)
+        print('O cadeado tem 5 de dificuldade')
+        sleep(1.5)
         print(f'Você tirou {jogador}')
-        if jogador > cadeado:
+        sleep(1.5)
+        if jogador >= cadeado:
             print('Você ouve um click! Você conseguiu!')
-            abel_inside_basement_the_yellow_king()
-        if cadeado >= jogador:
             tentativa += 1
-        print(f'tentativa{tentativa}')
-        if tentativa == 3:
+            print(f'tentativa [{tentativa}]')
+            abel_inside_basement_the_yellow_king()
+            sleep(1.5)
+        elif tentativa == 3:
             print('Algo naquela situação te incomoda. A sua concentração não é a mesma')
             print('Tem dias que a sorte não está para o ladrão')
             print('Você tem muito medo desse ser o dia do azar')
@@ -210,15 +216,13 @@ def abel_lock_basement():
             desc.description_solomons_grave()
             solomons_candle()
 
-
 def catch_a_fire():
     print('Você pega o isqueiro e o pequeno cantil de whisky.')
     print('Tira o cachecol e encharca com bebida')
     print('E diz: Ninguém precisa saber o que aconteceu aqui')
     print('Isso simplesmente não precisa existir')
     print('E então bota fogo na casa')
-    endgame()
-
+    print('\033[1;33mVocê venceu!!!!\033[0;0m')
 
 def test_sanity_abel():
     loucura_abel = randint(0, 1)
@@ -239,8 +243,10 @@ def test_sanity_abel():
     print('Você sente um incomôdo intenso:.')
     print(
         'Você nunca foi um homem de fé mas nunca duvidou do sobrenatural, ainda mais depois do que viu naquele dia, naquele quarto.')
+    print('-' * 100)
     print(f'Sua incerteza tem um valor de resistência de {sanidade_abel}')
     print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura_abel}')
+    print('-' * 100)
     if sanidade_abel >= loucura_abel:
         print('Você resistiu!')
         sleep(1)
@@ -254,7 +260,6 @@ def test_sanity_abel():
         sleep(1.5)
         endgame()
 
-
 def solomons_candle():
     print('Você se incomoda pelo desprezo com que foi enterrado aquele indivíduo')
     print('Vê alguns restos de velas nas sepulturas vizinhas e nenhuma naquela')
@@ -263,7 +268,7 @@ def solomons_candle():
     acender_vela = ' '
     while acender_vela not in 'ai':
         acender_vela = str(input(
-            chose_color('white', 'Digite [A] para acender uma vela ou [I] para ignorar'))).lower().strip().split()[0]
+            chose_color('white', 'Digite [A] para acender uma vela ou [I] para ignorar:'))).lower().strip().split()[0]
         if acender_vela == 'a':
             print('Um vento quente sopra das árvores ao redor')
             print('Você se sente bem e resolve ir pela porta principal')
@@ -273,8 +278,10 @@ def solomons_candle():
             print('Uma mão sai do túmulo e segura sua perna com força')
             monstro = randint(0, 1)
             resistencia_abel = randint(0, 15)
+            print('-' * 100)
             print(f'Você força sua perna com uma resistência de {resistencia_abel}')
             print(f'A criatura aperta com uma força de {monstro}')
+            print('-' * 100)
             if resistencia_abel > monstro:
                 print('Você pega sua faca e crava na mão podre da criatura')
                 print('Você corre em direção a casa!')
@@ -301,7 +308,6 @@ def solomons_candle():
                 sleep(2)
                 doors()
 
-
 def vlad_chose_door_or_backyard():
     caminho = ' '
     while caminho not in 'pc':
@@ -316,17 +322,18 @@ def vlad_chose_door_or_backyard():
         if caminho == 'c':
             desc.description_backyard()
             vlad_garden_conflit()
-
-
 def test_sanity_vlad():
     loucura = randint(0, 10)
     sanidade = randint(0, 100)
-    print(f'Sua crença no método científico te da uma resistência {sanidade}')
-    print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura}')
+    print('Você sente a voz gritar em sua mente! Ela testa sua sanidade!')
+    print('-'*100)
+    print(f'Sua crença no método científico te da uma resistência \033[1;97m{sanidade}\033[0;0m ')
+    print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de \033[1;97m{loucura}\033[0;0m ')
+    print('-'*100)
     if sanidade >= loucura:
         print('Você resistiu! Você sabia que sua crença na razão seria maior! ')
         sleep(2)
-        print('Você vai logo para dentro da casa')
+        print('E então corre para dentro da casa')
         #desc.description_mansion()
     elif loucura > sanidade:
         print('Você sucumbiu!')
@@ -334,7 +341,6 @@ def test_sanity_vlad():
         Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
         sleep(1.5)
         endgame()
-
 
 def chose_gate_or_jump_the_wall_vlad():
     print('Você olha ao redor e precisa tomar a primeira decisão: Entrar pelo horripilante portão central ou procurar'
@@ -355,7 +361,6 @@ def chose_gate_or_jump_the_wall_vlad():
             vlad_garden_conflit()
             doors()
 
-
 def vlad_garden_conflit():
     print('Então algo pula em você!')
     print('Você desvia rapidamente!')
@@ -363,8 +368,8 @@ def vlad_garden_conflit():
     print('Você saca rapidamente e atira.')
     monstrinho = randint(0, 10)
     ataque_personagem = randint(0, 15)
-    print(f'Seu tiro causou {ataque_personagem} de dano')
-    print(f'O monstro tinha uma defesa de {monstrinho}')
+    print(f'Seu tiro causou \033[1;97m{ataque_personagem} de dano\033[0;0m')
+    print(f'O monstro tinha uma defesa de \033[1;97m{monstrinho}\033[0;0m')
     if ataque_personagem > monstrinho:
         print('Você acertou e foi o fim da criatura!')
         print('É melhor entrar de vez na casa!')
@@ -383,12 +388,11 @@ def vlad_garden_conflit():
         sleep(2)
         doors()
 
-
 def vlad_attack():
     monstro = randint(0, 10)
     ataque_personagem = randint(0, 10)
-    print(f'Seu tiro causou {ataque_personagem} de dano')
-    print(f'O monstro tinha uma defesa de {monstro}')
+    print(f'Seu tiro causou \033[1;97m {ataque_personagem}\033[0;0m de dano')
+    print(f'O monstro tinha uma defesa de \033[1;97m {monstro}\033[0;0m ')
     if ataque_personagem > monstro:
         print('Você acertou! ')
         print('\033[1;33mGANHOU O JOGO!!!\033[0;0m')
@@ -405,11 +409,10 @@ def vlad_attack():
         sleep(1.5)
         monster_attack()
 
-
 def doors():
     print('''Você olha desesperado e nota 3 portas diferentes.
-    Você sabe que toda a verdade se revelará atrá de uma daquelas portas. 
-    Chegou a hora!''')
+E em seu âmago sabe que toda a verdade se revelará atrá de uma daquelas portas. 
+Chegou a hora!''')
     sleep(1.5)
     print('Escolha uma porta:')
     porta = ' '
@@ -420,7 +423,7 @@ def doors():
         print('')
         sleep(1.5)
         porta = str(input('\033[1;97mEscolha a porta:\033[0;0m')).lower().strip().split()[0]
-        print('-' * 40)
+        print('=' * 100)
         sleep(1.5)
         if porta == 'v':
             print('Você ouve o som do descarrilhar de correntes e sente uma dor intensa em seu abdomen! '
@@ -443,7 +446,6 @@ def doors():
         if porta not in 'var':
             print('Isso não é uma porta. Tente novamente!')
 
-
 def vlad_chose_door_or_backyard():
     caminho = ' '
     while caminho not in 'pc':
@@ -458,27 +460,6 @@ def vlad_chose_door_or_backyard():
         if caminho == 'c':
             desc.description_backyard()
             vlad_garden_conflit()
-
-
-def test_sanity_vlad():
-    # teste de sanidade
-    loucura = randint(0, 10)
-    sanidade = randint(0, 100)
-    print(f'Sua crença no método científico te da uma resistência {sanidade}')
-    print(f'A a voz passa a ecoar na sua cabeça com uma intesidade de {loucura}')
-    if sanidade >= loucura:
-        print('Você resistiu! Você sabia que sua crença na razão seria maior! ')
-        sleep(2)
-        print('Você vai logo para dentro da casa')
-        sleep(1.5)
-
-
-    elif loucura > sanidade:
-        print('Você sucumbiu!')
-        print('Infiel')
-        Config.slowprint('\033[1;31mVOCÊ ENLOUQUECEU!\033[0;0m')
-        sleep(1.5)
-        endgame()
 
 
 def chose_gate_or_jump_the_wall_vlad():
@@ -499,7 +480,6 @@ def chose_gate_or_jump_the_wall_vlad():
             vlad_garden_conflit()
             doors()
 
-
 def vlad_garden_conflit():
     print('Então algo pula em você!')
     print('Você desvia rapidamente!')
@@ -507,8 +487,8 @@ def vlad_garden_conflit():
     print('Você saca rapidamente e atira.')
     monstrinho = randint(0, 10)
     ataque_personagem = randint(0, 15)
-    print(f'Seu tiro causou {ataque_personagem} de dano')
-    print(f'O monstro tinha uma defesa de {monstrinho}')
+    print(f'Seu tiro causou \033[1;97m {ataque_personagem}\033[0;0m de dano')
+    print(f'O monstro tinha uma defesa de \033[1;97m {monstrinho}\033[0;0m')
     if ataque_personagem > monstrinho:
         print('Você acertou e foi o fim da criatura!')
         print('É melhor entrar de vez na casa!')
@@ -531,12 +511,11 @@ def vlad_garden_conflit():
         print('Ele errou! Você não arrisca e corre!')
         sleep(2)
 
-
 def vlad_attack():
     monstro = randint(0, 10)
     ataque_personagem = randint(0, 10)
-    print(f'Seu tiro causou {ataque_personagem} de dano')
-    print(f'O monstro tinha uma defesa de {monstro}')
+    print(f'Seu tiro causou \033[1;97m {ataque_personagem}\033[0;0m de dano')
+    print(f'O monstro tinha uma defesa de \033[1;97m {monstro}\033[0;0m')
     if ataque_personagem > monstro:
         print('Você acertou! ')
         print('\033[1;33mGANHOU O JOGO!!!\033[0;0m')
@@ -553,21 +532,21 @@ def vlad_attack():
         sleep(1.5)
         monster_attack()
 
-
 def main():
-    print(chose_color('italico', f"{'MAD HOUSE':^80}"))
-    print('=' * 80)
+    print('=' * 100)
+    print(f"\033[1;91m{'-MAD HOUSE-':^100}\033[0;0m")
+    print('=' * 100)
     sleep(0.5)
-    print(f"{'Vocês foram chamados ao Bureau de Pesquisas e Defesa Paranormal (B.P.D.P)':^40}")
-    print(f"{'Quando quiser começar, digite a palavra JOGAR:':^80}")
+    print(f"{'Vocês foram chamados ao Bureau de Pesquisas e Defesa Paranormal (B.P.D.P)':^100}")
+    print(f"{'Quando quiser começar, digite a palavra JOGAR:':^100}")
     print('')
-    print(f"{'Senão, digite qualquer tecla para sair...':^80}")
+    print(f"{'Senão, digite qualquer tecla para sair...':^100}")
     print('')
-    comeco = (input(f"{'JOGAR??:':^80}")).lower().strip().split()[0]
+    comeco = (input(f"{'JOGAR??:':^100}")).lower().strip().split()[0]
     if comeco == 'jogar':
-        print('_' * 30)
-        print('Veja qual personagem você pode chamar:')
-        print('_' * 30)
+        print('_' * 100)
+        print(f"{'Veja qual personagem você pode chamar:':^100}")
+        print('_' * 100)
         sleep(1.5)
         character_chart(vlad)
         character_chart(bill)
@@ -575,7 +554,6 @@ def main():
         select_character()
     else:
         endgame()
-
 
 def chose_color(cor, texto):
     if cor == 'red':
@@ -596,11 +574,8 @@ def chose_color(cor, texto):
     if cor == 'italico':
         return f'\33[3m {texto} \033[0;0m'
 
-
 def format_text_history(estilo, texto):
     print(chose_color('italico', (f"{texto:^80}")))
-
-
 # JOGAR NOVAMENTE?
 def endgame():
     jogo = True
@@ -615,20 +590,18 @@ def endgame():
             break
 
 def format_option(opc):
-    print('-' * 40)
+    print('=' * 40)
     print(opc)
-    print('-' * 40)
-
+    print('=' * 40)
 
 def character_chart(char):
-    # sleep(1.5)
+    #sleep(1.5)
     print('#' * 30)
     for pos in range(0, len(char)):
         if pos % 2 == 0:
             print(f'\033[1;97m {char[pos]:-<20}\033[0;0m', end='')
         if pos % 2 != 0:
             print(f' {char[pos]:>6}')
-
 
 def select_character():  # ESCOLHA DO PERSONAGEM
     personagem = ' '
@@ -639,13 +612,12 @@ def select_character():  # ESCOLHA DO PERSONAGEM
             format_option('\033[1;97mVlad [V]\nBill [B]\nAbel [A]\033[0;0m')
             personagem = str(input('\033[1;97mEscolha um personagem acima:')).lower().strip().split()[0]
             confirmar = str(input('Confirma a escolha? [S/N]?:\033[0;0m')).lower().strip().split()[0]
-            print('-' * 40)
+            print('=' * 100)
             if confirmar == 'n':
-                endgame()
+                select_character()
             if personagem not in 'vba':
                 print('Personagem não encontrado. Tente novamente!')
             if personagem == 'v':
-                # aprofundar rapidamente o personagem
                 print('\033[1;97m Você escolheu Vlad!')
                 print('>>>>VLAD diz:...\033[0;0m', end='')
                 print('Olá, eu sou Vlad e estou com pressa, vamos!')
@@ -653,9 +625,7 @@ def select_character():  # ESCOLHA DO PERSONAGEM
                 desc.description_front_propriety()
                 chose_gate_or_jump_the_wall_vlad()
                 vlad_chose_door_or_backyard()
-
-
-            elif personagem == 'a':
+            if personagem == 'a':
                 print('\033[1;97m Você escolheu Abel!')
                 print('>>>>ABEL diz:...\033[0;0m', end='')
                 print('O que vocês querem de novo?! Ah.. Chego em breve!')
@@ -670,12 +640,11 @@ def select_character():  # ESCOLHA DO PERSONAGEM
                 desc.description_front_propriety()
                 chose_gate_or_jump_the_wall_bill()
 
-
 def character_attack():
     monstro = random.randint(0, 10)
     ataque_personagem = random.randint(0, 10)
-    print(f'Seu tiro causou {ataque_personagem} de dano')
-    print(f'O monstro tinha uma defesa de {monstro}')
+    print(f'Seu tiro causou \033[1;97m {ataque_personagem}\033[0;0m de dano')
+    print(f'O monstro tinha uma defesa de \033[1;97m {monstro}\033[0;0m')
     if ataque_personagem > monstro:
         print('Você acertou! ')
         print('\033[1;33mGANHOU O JOGO!!!\033[0;0m')
@@ -691,7 +660,6 @@ def character_attack():
         print('Agora é a vez do monstro')
         time.sleep(1.5)
         monster_attack()
-
 
 def monster_attack():
     monstro = random.randint(0, 10)
